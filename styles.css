@@ -78,7 +78,7 @@ footer {
 
 background-color: #333;
 
-color: black;
+color: white;
 
 text-align: float:left;
 
@@ -116,7 +116,8 @@ text-decoration: underline;
 
 img {
 
-border: 5px solid #black;
+border: 5px solid 
+  color:black;
 
 border-radius: 10px;
 

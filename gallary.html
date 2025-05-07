@@ -14,19 +14,7 @@
 </head>
 
 <body>
-    <h1>Best cars available</h1>
-    <div class="gallary">
-      <img src="https://th.bing.com/th/id/OIP.MZORHRo1OmDEDlHIwY3evQHaEo?rs=1&pid=ImgDetMain" alt="red hellcat">
-      <img src="https://th.bing.com/th/id/OIP.iA13yFz0E5BlHl6f0wjj6QHaEo?rs=1&pid=ImgDetMain" alt="lamborghini">
-      <img src="https://th.bing.com/th/id/OIP.gFwbq92LO2kO28F8rjSYEgAAAA?rs=1&pid=ImgDetMain" alt="Audi Rs3 sportback">
-      <img src="https://th.bing.com/th/id/OIP.GAnV0minL8eYWMxPK-fyNwHaEK?rs=1&pid=ImgDetMain" alt="cutomized hellcat">
-      <img src="https://th.bing.com/th/id/OIP.43PHKysW3EuX9iTH6e6R1gHaEo?rs=1&pid=ImgDetMain" alt="Audi S3 sportback">
-        <img src="https://www.autopediame.com/storage/images/Audi/A202481_small.jpg" alt="S3 sportback interior">
-        <img src="https://th.bing.com/th/id/OIP.-K830OqRtBQSoqchYuXXJQHaEK?rs=1&pid=ImgDetMain" alt="hellcat srt">
-        <img src="https://th.bing.com/th/id/OIP.OizZbc6IUF6Jtplip3bLbwHaEK?rs=1&pid=ImgDetMain" alt="mercedes-benz">
-        <img src="https://th.bing.com/th/id/OIP.Toh8xiyiAVon3Xr7T7uLggHaE8?rs=1&pid=ImgDetMain" alt="hellcat">
-<header>
-<nav>
+    <nav>
 
 <a href="index.html">Home</a> 
 
@@ -37,6 +25,72 @@
 <a href="gallary.html">gallary</a>
 
 </nav>
+   <section id="vehicles">
+  <h2>Featured Vehicles</h2>
+  <div class="vehicle-cards">
+    <div class="vehicle-card">
+      <img src="https://th.bing.com/th/id/OIP.GAnV0minL8eYWMxPK-fyNwHaEK?rs=1&pid=ImgDetMain" alt="cutomized hellcat" />
+      <h3>Dodge SRT Hellcat</h3>
+      <p>Price: $38,000</p>
+      <a href="#customization">Customize</a>
+    </div>
+    <div class="vehicle-card">
+      <img src="https://th.bing.com/th/id/OIP.iA13yFz0E5BlHl6f0wjj6QHaEo?rs=1&pid=ImgDetMain" alt="lamborghini />
+      <h3>Lamborghini</h3>
+      <p>Price: $32,000</p>
+      <a href="#customization">Customize</a>
+    </div>
+    <!-- Add more vehicle cards as needed -->
+  </div>
+</section>
+
+<style>
+  .vehicle-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+
+  .vehicle-card {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .vehicle-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .vehicle-card h3 {
+    margin-top: 10px;
+    font-size: 1.25rem;
+  }
+
+  .vehicle-card p {
+    font-size: 1.1rem;
+    margin-top: 5px;
+  }
+
+  .vehicle-card a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #ff6700;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+
+  .vehicle-card a:hover {
+    background-color: #e55a00;
+  }
+
+
          
         </div>
 </body>

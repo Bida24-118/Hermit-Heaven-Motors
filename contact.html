@@ -35,14 +35,53 @@
 
 
 <main>
+ <section id="contact">
+  <h2>Contact Us</h2>
+  <form action="#" method="post">
+    <label for="name">Full Name:</label>
+    <input type="text" id="name" name="name" required />
 
-<h3> location:245 Tlokweng road</h3>
-            <h3>conatct:(+267) 345 745</h3>
-            <h3>email us on:speedstarmotors@gmail.com</h3>
-  <h2>follow us on</h2>
-      <h3>facebook;speedstarmotors</h3>
-      <h3>instargram;speedstarmotors@gmail.com</h3>
-      <h3>tiktock;speedstarmotors@gmail.com</h3>
+    <label for="email">Email Address:</label>
+    <input type="email" id="email" name="email" required />
+
+    <label for="message">Your Message:</label>
+    <textarea id="message" name="message" required></textarea>
+
+    <button type="submit">Submit</button>
+  </form>
+</section>
+
+<style>
+  #contact form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  #contact input, #contact textarea {
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  #contact button {
+    padding: 12px 20px;
+    background-color: #ff6700;
+    color: white;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  #contact button:hover {
+    background-color: #e55a00;
+  }
+
 
 </main>
 

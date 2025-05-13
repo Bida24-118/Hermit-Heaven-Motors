@@ -1,17 +1,17 @@
+ <style>
 body {
-  
-font-family: Arial, sans-serif;
-
-color: white;
-
-background-color: black;
-
-margin: 0;
-
-padding: 0;
-
-line-height: 1.6;
+ background-image:
+  url('https://i.pinimg.com/736x/0a/82/77/0a8277af7f8591b7dfec7d202cbf33a2.jpg');
+ background-size: cover;
+ background-reapet: no-repeat;
+ background-position: center;
+ font-family: sans-serif;
+ color: white;
+ text-align: center;
+ height: 100vh;
+ margin: 0;
 }
+  </style>
 
   .image-container {
     display: flex;

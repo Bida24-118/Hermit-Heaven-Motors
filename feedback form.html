@@ -3,262 +3,310 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Feedback page</title>
- <header>
-        nav>
-
-<a href="index.html">Home</a> 
-
-<a href="about.html">About</a> 
-
-<a href="gallary.html">gallary</a> 
-
-<a href="contact.html">Contact</a>
- 
-<a href="Form.html">Feedback Page</a> 
-  
-</nav> 
-    </header>
+<title>Simplified Advanced Review Form</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&display=swap');
-
   body {
+    font-family: Arial, sans-serif;
+    background: #eef2f7;
     margin: 0;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    color: #fff;
+    padding: 40px 20px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
   }
-
   .container {
-    background: #1e1e2f;
-    border-radius: 16px;
-    padding: 40px 30px 50px;
-    max-width: 480px;
+    background: white;
+    max-width: 450px;
     width: 100%;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-    text-align: center;
+    padding: 30px 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    color: #333;
   }
-
   h1 {
-    margin-bottom: 12px;
-    font-weight: 600;
-    font-size: 2.4rem;
-  }
-
-  p.subtitle {
-    margin-top: 0;
-    font-weight: 400;
-    opacity: 0.75;
+    text-align: center;
     margin-bottom: 30px;
-    font-size: 1rem;
+    color: #222;
   }
-
-  .stars {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 30px;
-    user-select: none;
+  label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #555;
   }
-
-  .star {
-    font-size: 3.5rem;
-    color: #bbb;
-    cursor: pointer;
-    transition: color 0.3s ease;
-  }
-
-  .star.hovered,
-  .star.selected {
-    color: #ffdd55;
-    filter: drop-shadow(0 0 6px #ffdd55);
-  }
-
+  input[type="text"],
+  input[type="email"],
+  select,
   textarea {
     width: 100%;
-    resize: vertical;
-    min-height: 100px;
-    border-radius: 12px;
-    border: none;
-    padding: 15px 18px;
+    padding: 10px 12px;
+    margin-bottom: 18px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
     font-size: 1rem;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+  }
+  textarea {
+    resize: vertical;
+    min-height: 90px;
+  }
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  select:focus,
+  textarea:focus {
+    border-color: #4a90e2;
     outline: none;
-    box-sizing: border-box;
-    margin-bottom: 30px;
-    background: #2e2e42;
-    color: #eee;
-    box-shadow: inset 0 0 10px #00000088;
-    transition: box-shadow 0.3s ease;
+    box-shadow: 0 0 6px #a8c5ff;
   }
 
-  textarea:focus {
-    box-shadow: inset 0 0 12px 3px #ffdd55aa;
+  /* Star rating */
+
+  .star-rating {
+    display: flex;
+    margin-bottom: 25px;
+    justify-content: center;
+  }
+
+  .star-rating input[type="radio"] {
+    display: none;
+  }
+
+  .star-rating label {
+    font-size: 28px;
+    color: #ccc;
+    cursor: pointer;
+    margin-right: 8px;
+    transition: color 0.3s ease;
+  }
+  .star-rating label:hover,
+  .star-rating label:hover ~ label {
+    color: #ffcc00;
+  }
+  .star-rating input[type="radio"]:checked ~ label {
+    color: #ffcc00;
+  }
+
+  /* Error messages */
+  .error {
+    color: #d32f2f;
+    font-size: 0.85rem;
+    margin-top: -14px;
+    margin-bottom: 14px;
+    display: none;
+  }
+  .error.visible {
+    display: block;
+  }
+
+  /* Character count */
+  .char-counter {
+    font-size: 0.85rem;
+    text-align: right;
+    color: #666;
+    margin-top: -14px;
+    margin-bottom: 18px;
   }
 
   button {
-    background: #ffcc00;
-    color: #1e1e2f;
-    font-weight: 700;
-    font-size: 1.2rem;
+    background-color: #4a90e2;
+    color: white;
     border: none;
     padding: 14px 0;
-    border-radius: 12px;
     width: 100%;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 6px 15px -4px #ffcc00cc;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 5px 15px rgba(74,144,226,0.5);
   }
-
   button:hover {
-    background: #e6b800;
-    box-shadow: 0 10px 30px -6px #e6b800cc;
+    background-color: #3a78c2;
   }
-
-  .thank-you {
-    font-size: 1.5rem;
-    color: #ffdd55;
-    font-weight: 600;
-    margin-top: 20px;
-    animation: fadeInUp 0.8s ease forwards;
-  }
-
-  @keyframes fadeInUp {
-    0% {
-      opacity: 0;
-      transform: translateY(18px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @media (max-width: 500px) {
-    .container {
-      padding: 30px 20px 40px;
-    }
-    .star {
-      font-size: 3rem;
-    }
+  button:disabled {
+    background-color: #a3c1ff;
+    cursor: not-allowed;
+    box-shadow: none;
   }
 </style>
 </head>
 <body>
-  <div class="container" role="main" aria-labelledby="feedbackTitle">
-    <h1 id="feedbackTitle">We Value Your Feedback</h1>
-    <p class="subtitle">Please rate your experience and leave your comments below.</p>
+  <div class="container">
+    <h1>Review Form</h1>
+    <form id="reviewForm" novalidate>
+      <label for="name">Full Name *</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required />
+      <div class="error" id="nameError">Please enter your name.</div>
 
-    <div class="stars" role="radiogroup" aria-label="Rating System" tabindex="0">
-      <span class="star" role="radio" aria-checked="false" aria-label="1 star" data-value="1" tabindex="-1">&#9733;</span>
-      <span class="star" role="radio" aria-checked="false" aria-label="2 stars" data-value="2" tabindex="-1">&#9733;</span>
-      <span class="star" role="radio" aria-checked="false" aria-label="3 stars" data-value="3" tabindex="-1">&#9733;</span>
-      <span class="star" role="radio" aria-checked="false" aria-label="4 stars" data-value="4" tabindex="-1">&#9733;</span>
-      <span class="star" role="radio" aria-checked="false" aria-label="5 stars" data-value="5" tabindex="-1">&#9733;</span>
-    </div>
+      <label for="email">Email *</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required />
+      <div class="error" id="emailError">Please enter a valid email.</div>
 
-    <textarea id="feedbackText" placeholder="Write your feedback here..." aria-label="Feedback comments"></textarea>
+      <label for="reviewTitle">Review Title *</label>
+      <input type="text" id="reviewTitle" name="reviewTitle" placeholder="Title of your review" required />
+      <div class="error" id="titleError">Please enter a review title.</div>
 
-    <button id="submitBtn" aria-live="polite">Submit Feedback</button>
+      <label for="recommend">Would you recommend this? *</label>
+      <select id="recommend" name="recommend" required>
+        <option value="" disabled selected>Select an option</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+      <div class="error" id="recommendError">Please select an option.</div>
 
-    <div id="thankYouMessage" class="thank-you" role="alert" aria-live="assertive" style="display:none;">
-      Thank you for your feedback!
-    </div>
+      <label>Rating *</label>
+      <div class="star-rating" role="radiogroup" aria-required="true" aria-labelledby="ratingLabel">
+        <input type="radio" id="star5" name="rating" value="5" />
+        <label for="star5">&#9733;</label>
+
+        <input type="radio" id="star4" name="rating" value="4" />
+        <label for="star4">&#9733;</label>
+
+        <input type="radio" id="star3" name="rating" value="3" />
+        <label for="star3">&#9733;</label>
+
+        <input type="radio" id="star2" name="rating" value="2" />
+        <label for="star2">&#9733;</label>
+
+        <input type="radio" id="star1" name="rating" value="1" />
+        <label for="star1">&#9733;</label>
+      </div>
+      <div class="error" id="ratingError">Please select a rating.</div>
+
+      <label for="comments">Comments (optional)</label>
+      <textarea id="comments" name="comments" maxlength="400" placeholder="Write your review here..."></textarea>
+      <div class="char-counter" id="commentsCounter">0 / 400</div>
+
+      <button type="submit" id="submitBtn" disabled>Submit Review</button>
+    </form>
   </div>
 
   <script>
     (function(){
-      const stars = document.querySelectorAll('.star');
-      let selectedRating = 0;
-      const starsContainer = document.querySelector('.stars');
-      const thankYouMessage = document.getElementById('thankYouMessage');
-      const submitBtn = document.getElementById('submitBtn');
-      const feedbackText = document.getElementById('feedbackText');
+      const form = document.getElementById('reviewForm');
+      const nameInput = form.name;
+      const emailInput = form.email;
+      const reviewTitleInput = form.reviewTitle;
+      const recommendSelect = form.recommend;
+      const ratingInputs = form.rating;
+      const commentsInput = form.comments;
 
-      function setStars(rating) {
-        stars.forEach(star => {
-          const starValue = parseInt(star.getAttribute('data-value'), 10);
-          if(starValue <= rating) {
-            star.classList.add('selected');
-            star.setAttribute('aria-checked', 'true');
-          } else {
-            star.classList.remove('selected');
-            star.setAttribute('aria-checked', 'false');
-          }
-        });
+      const nameError = document.getElementById('nameError');
+      const emailError = document.getElementById('emailError');
+      const titleError = document.getElementById('titleError');
+      const recommendError = document.getElementById('recommendError');
+      const ratingError = document.getElementById('ratingError');
+      const commentsCounter = document.getElementById('commentsCounter');
+
+      const submitBtn = document.getElementById('submitBtn');
+
+      function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email.toLowerCase());
       }
 
-      stars.forEach(star => {
-        star.addEventListener('mouseenter', () => {
-          const hoverValue = parseInt(star.getAttribute('data-value'), 10);
-          stars.forEach(s => {
-            const sValue = parseInt(s.getAttribute('data-value'), 10);
-            if(sValue <= hoverValue) {
-              s.classList.add('hovered');
-            } else {
-              s.classList.remove('hovered');
-            }
-          });
-        });
+      function getSelectedRating(){
+        for(let i=0; i<ratingInputs.length; i++) {
+          if(ratingInputs[i].checked) return ratingInputs[i].value;
+        }
+        return null;
+      }
 
-        star.addEventListener('mouseleave', () => {
-          stars.forEach(s => s.classList.remove('hovered'));
-        });
+      function validateField(field, errorElem) {
+        if(field.value.trim() === '') {
+          errorElem.style.display = 'block';
+          return false;
+        } else {
+          errorElem.style.display = 'none';
+          return true;
+        }
+      }
 
-        star.addEventListener('click', () => {
-          selectedRating = parseInt(star.getAttribute('data-value'), 10);
-          setStars(selectedRating);
-        });
+      function validate() {
+        let valid = true;
 
-        star.addEventListener('keydown', (e) => {
-          let newRating;
-          if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
-            e.preventDefault();
-            newRating = selectedRating < 5 ? selectedRating + 1 : 5;
-            selectedRating = newRating;
-            setStars(newRating);
-            stars[newRating - 1].focus();
-          }
-          if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
-            e.preventDefault();
-            newRating = selectedRating > 1 ? selectedRating - 1 : 1;
-            selectedRating = newRating;
-            setStars(newRating);
-            stars[newRating - 1].focus();
-          }
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            selectedRating = parseInt(e.target.getAttribute('data-value'), 10);
-            setStars(selectedRating);
-          }
-        });
-      });
+        if(!validateField(nameInput, nameError)) valid = false;
 
-      starsContainer.addEventListener('mouseleave', () => {
-        stars.forEach(s => s.classList.remove('hovered'));
-      });
-
-      submitBtn.addEventListener('click', () => {
-        if(selectedRating === 0) {
-          alert('Please select a star rating before submitting your feedback.');
-          return;
+        if(emailInput.value.trim()==='') {
+          emailError.textContent = 'Please enter a valid email.';
+          emailError.style.display = 'block';
+          valid = false;
+        } else if(!validateEmail(emailInput.value)) {
+          emailError.textContent = 'Please enter a valid email.';
+          emailError.style.display = 'block';
+          valid = false;
+        } else {
+          emailError.style.display = 'none';
         }
 
-        thankYouMessage.style.display = 'block';
-        submitBtn.disabled = true;
-        feedbackText.disabled = true;
-        stars.forEach(star => star.removeEventListener('click', () => {}));
+        if(!validateField(reviewTitleInput, titleError)) valid = false;
+
+        if(recommendSelect.value === '') {
+          recommendError.style.display = 'block';
+          valid = false;
+        } else {
+          recommendError.style.display = 'none';
+        }
+
+        if(!getSelectedRating()) {
+          ratingError.style.display = 'block';
+          valid = false;
+        } else {
+          ratingError.style.display = 'none';
+        }
+
+        return valid;
+      }
+
+      // Update submit button status based on validation
+      function checkForm() {
+        submitBtn.disabled = !validate();
+      }
+
+      // Comment character counter
+      commentsInput.addEventListener('input', () => {
+        commentsCounter.textContent = `${commentsInput.value.length} / 400`;
       });
+
+      // Add input/change listeners for live validation
+      [nameInput, emailInput, reviewTitleInput, recommendSelect].forEach(elem => {
+        elem.addEventListener('input', checkForm);
+        elem.addEventListener('change', checkForm);
+      });
+      for(let i=0; i<ratingInputs.length; i++) {
+        ratingInputs[i].addEventListener('change', checkForm);
+      }
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        if(!validate()) return;
+
+        const review = {
+          name: nameInput.value.trim(),
+          email: emailInput.value.trim(),
+          reviewTitle: reviewTitleInput.value.trim(),
+          recommend: recommendSelect.value,
+          rating: getSelectedRating(),
+          comments: commentsInput.value.trim()
+        };
+
+        alert(
+          `Thank you for your review, ${review.name}!\n\n`+
+          `Email: ${review.email}\n`+
+          `Review Title: ${review.reviewTitle}\n` +
+          `Recommendation: ${review.recommend}\n` +
+          `Rating: ${review.rating} star(s)\n` +
+          `Comments: ${review.comments || '(No comments)'}`
+        );
+
+        form.reset();
+        commentsCounter.textContent = '0 / 400';
+        submitBtn.disabled = true;
+      });
+
+      checkForm();
     })();
   </script>
 </body>
 </html>
 
-
-</body>
-</html>

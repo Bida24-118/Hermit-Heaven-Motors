@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Website Feedback</title>
-</head>
-<body>
-    <header>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Feedback Page with Rating System</title>
+ <header>
         nav>
 
 <a href="index.html">Home</a> 
@@ -19,27 +19,246 @@
   
 </nav> 
     </header>
-    <h2>Give Us Your Feedback</h2>
-    <form action="submit_feedback.php" method="post">
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name"><br><br>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&display=swap');
 
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email"><br><br>
+  body {
+    margin: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
 
-        <label for="rating">Rating:</label><br>
-        <select id="rating" name="rating">
-            <option value="1">⭐ 1 - Poor</option>
-            <option value="2">⭐⭐ 2 - Fair</option>
-            <option value="3">⭐⭐⭐ 3 - Good</option>
-            <option value="4">⭐⭐⭐⭐ 4 - Very Good</option>
-            <option value="5">⭐⭐⭐⭐⭐ 5 - Excellent</option>
-        </select><br><br>
+  .container {
+    background: #1e1e2f;
+    border-radius: 16px;
+    padding: 40px 30px 50px;
+    max-width: 480px;
+    width: 100%;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    text-align: center;
+  }
 
-        <label for="message">Feedback:</label><br>
-        <textarea id="message" name="message" rows="5" cols="40"></textarea><br><br>
+  h1 {
+    margin-bottom: 12px;
+    font-weight: 600;
+    font-size: 2.4rem;
+  }
 
-        <input type="submit" value="Submit">
-    </form>
+  p.subtitle {
+    margin-top: 0;
+    font-weight: 400;
+    opacity: 0.75;
+    margin-bottom: 30px;
+    font-size: 1rem;
+  }
+
+  .stars {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 30px;
+    user-select: none;
+  }
+
+  .star {
+    font-size: 3.5rem;
+    color: #bbb;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+
+  .star.hovered,
+  .star.selected {
+    color: #ffdd55;
+    filter: drop-shadow(0 0 6px #ffdd55);
+  }
+
+  textarea {
+    width: 100%;
+    resize: vertical;
+    min-height: 100px;
+    border-radius: 12px;
+    border: none;
+    padding: 15px 18px;
+    font-size: 1rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    outline: none;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+    background: #2e2e42;
+    color: #eee;
+    box-shadow: inset 0 0 10px #00000088;
+    transition: box-shadow 0.3s ease;
+  }
+
+  textarea:focus {
+    box-shadow: inset 0 0 12px 3px #ffdd55aa;
+  }
+
+  button {
+    background: #ffcc00;
+    color: #1e1e2f;
+    font-weight: 700;
+    font-size: 1.2rem;
+    border: none;
+    padding: 14px 0;
+    border-radius: 12px;
+    width: 100%;
+    cursor: pointer;
+    box-shadow: 0 6px 15px -4px #ffcc00cc;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  button:hover {
+    background: #e6b800;
+    box-shadow: 0 10px 30px -6px #e6b800cc;
+  }
+
+  .thank-you {
+    font-size: 1.5rem;
+    color: #ffdd55;
+    font-weight: 600;
+    margin-top: 20px;
+    animation: fadeInUp 0.8s ease forwards;
+  }
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 500px) {
+    .container {
+      padding: 30px 20px 40px;
+    }
+    .star {
+      font-size: 3rem;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="container" role="main" aria-labelledby="feedbackTitle">
+    <h1 id="feedbackTitle">We Value Your Feedback</h1>
+    <p class="subtitle">Please rate your experience and leave your comments below.</p>
+
+    <div class="stars" role="radiogroup" aria-label="Rating System" tabindex="0">
+      <span class="star" role="radio" aria-checked="false" aria-label="1 star" data-value="1" tabindex="-1">&#9733;</span>
+      <span class="star" role="radio" aria-checked="false" aria-label="2 stars" data-value="2" tabindex="-1">&#9733;</span>
+      <span class="star" role="radio" aria-checked="false" aria-label="3 stars" data-value="3" tabindex="-1">&#9733;</span>
+      <span class="star" role="radio" aria-checked="false" aria-label="4 stars" data-value="4" tabindex="-1">&#9733;</span>
+      <span class="star" role="radio" aria-checked="false" aria-label="5 stars" data-value="5" tabindex="-1">&#9733;</span>
+    </div>
+
+    <textarea id="feedbackText" placeholder="Write your feedback here..." aria-label="Feedback comments"></textarea>
+
+    <button id="submitBtn" aria-live="polite">Submit Feedback</button>
+
+    <div id="thankYouMessage" class="thank-you" role="alert" aria-live="assertive" style="display:none;">
+      Thank you for your feedback!
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const stars = document.querySelectorAll('.star');
+      let selectedRating = 0;
+      const starsContainer = document.querySelector('.stars');
+      const thankYouMessage = document.getElementById('thankYouMessage');
+      const submitBtn = document.getElementById('submitBtn');
+      const feedbackText = document.getElementById('feedbackText');
+
+      function setStars(rating) {
+        stars.forEach(star => {
+          const starValue = parseInt(star.getAttribute('data-value'), 10);
+          if(starValue <= rating) {
+            star.classList.add('selected');
+            star.setAttribute('aria-checked', 'true');
+          } else {
+            star.classList.remove('selected');
+            star.setAttribute('aria-checked', 'false');
+          }
+        });
+      }
+
+      stars.forEach(star => {
+        star.addEventListener('mouseenter', () => {
+          const hoverValue = parseInt(star.getAttribute('data-value'), 10);
+          stars.forEach(s => {
+            const sValue = parseInt(s.getAttribute('data-value'), 10);
+            if(sValue <= hoverValue) {
+              s.classList.add('hovered');
+            } else {
+              s.classList.remove('hovered');
+            }
+          });
+        });
+
+        star.addEventListener('mouseleave', () => {
+          stars.forEach(s => s.classList.remove('hovered'));
+        });
+
+        star.addEventListener('click', () => {
+          selectedRating = parseInt(star.getAttribute('data-value'), 10);
+          setStars(selectedRating);
+        });
+
+        star.addEventListener('keydown', (e) => {
+          let newRating;
+          if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            newRating = selectedRating < 5 ? selectedRating + 1 : 5;
+            selectedRating = newRating;
+            setStars(newRating);
+            stars[newRating - 1].focus();
+          }
+          if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
+            e.preventDefault();
+            newRating = selectedRating > 1 ? selectedRating - 1 : 1;
+            selectedRating = newRating;
+            setStars(newRating);
+            stars[newRating - 1].focus();
+          }
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            selectedRating = parseInt(e.target.getAttribute('data-value'), 10);
+            setStars(selectedRating);
+          }
+        });
+      });
+
+      starsContainer.addEventListener('mouseleave', () => {
+        stars.forEach(s => s.classList.remove('hovered'));
+      });
+
+      submitBtn.addEventListener('click', () => {
+        if(selectedRating === 0) {
+          alert('Please select a star rating before submitting your feedback.');
+          return;
+        }
+
+        thankYouMessage.style.display = 'block';
+        submitBtn.disabled = true;
+        feedbackText.disabled = true;
+        stars.forEach(star => star.removeEventListener('click', () => {}));
+      });
+    })();
+  </script>
+</body>
+</html>
+
+
 </body>
 </html>
